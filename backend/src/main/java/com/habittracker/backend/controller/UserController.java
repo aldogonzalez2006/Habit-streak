@@ -1,5 +1,6 @@
 package com.habittracker.backend.controller;
 
+import jakarta.validation.Valid;
 import com.habittracker.backend.dto.CreateUserRequest;
 import com.habittracker.backend.dto.UserResponse;
 import com.habittracker.backend.entity.User;
@@ -19,19 +20,19 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(
-            @RequestBody CreateUserRequest request) {
+public ResponseEntity<UserResponse> createUser(
+        @Valid @RequestBody CreateUserRequest request) {
 
-        User user = userService.createUser(request);
+    User user = userService.createUser(request);
 
-        UserResponse response = new UserResponse(
-            user.getId(),
-            user.getEmail(),
-            user.getCreatedAt()
-        );
+    UserResponse response = new UserResponse(
+        user.getId(),
+        user.getEmail(),
+        user.getCreatedAt()
+    );
 
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(response);
-    }
+    return ResponseEntity
+            .status(HttpStatus.CREATED)
+            .body(response);
+}
 }
