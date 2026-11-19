@@ -87,4 +87,14 @@ public class Habit {
     public OffsetDateTime getUpdatedAt() {
         return updatedAt;
     }
+
+    public void updateDetails(String name, String description, String color) {
+    this.name = name;
+    this.description = description;
+    this.color = color;
+}
+
+public void archive() {
+    this.isActive = false;
+}
 }
